@@ -8,8 +8,11 @@ class Animal:
         Animal.alive.append(self)
 
     def __repr__(self) -> str:
-        return (f"{{Name: {self.name}, "
-                f"Health: {self.health}, Hidden: {self.hidden}}}")
+        return (
+            f"{{Name: {self.name}, "
+            f"Health: {self.health}, "
+            f"Hidden: {self.hidden}}}"
+        )
 
     def _check_alive(self) -> None:
         if self.health <= 0 and self in Animal.alive:
@@ -18,15 +21,22 @@ class Animal:
 
 class Herbivore(Animal):
     def hide(self) -> None:
+        """Переключает состояние скрытности травоядного."""
         self.hidden = not self.hidden
 
 
 class Carnivore(Animal):
     def bite(self, other: Herbivore) -> None:
+        """
+        Укус хищника уменьшает здоровье травоядного на 50.
+        Не срабатывает, если другой объект не Herbivore
+        или если жертва скрыта.
+        """
         if not isinstance(other, Herbivore):
             return
         if other.hidden:
             return
+
         other.health -= 50
         if other.health <= 0:
             other.health = 0
