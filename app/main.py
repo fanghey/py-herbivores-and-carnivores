@@ -12,9 +12,9 @@ class Animal:
 
     def __repr__(self) -> str:
         return (
-            "{Name: " + str(self.name) +
-            ", Health: " + str(self.health) +
-            ", Hidden: " + str(self.hidden) + "}"
+            "{Name: " + str(self.name)
+            + ", Health: " + str(self.health)
+            + ", Hidden: " + str(self.hidden) + "}"
         )
 
     def _check_alive(self) -> None:
